@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: Srinivasu2000/youtube-backend:latest
+        image: srinivasu56/youtube-backend:latest
         ports:
         - containerPort: 5000
         env:
