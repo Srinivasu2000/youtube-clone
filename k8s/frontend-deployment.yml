@@ -20,7 +20,7 @@ spec:
       containers:
       - name: frontend
 
-        image: Srinivasu2000/youtube-frontend:latest
+        image: srinivasu56/youtube-frontend:latest
 
         ports:
         - containerPort: 80
