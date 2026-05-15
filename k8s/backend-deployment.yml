@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: YOUR_DOCKERHUB_USERNAME/youtube-backend:latest
+        image: Srinivasu2000/youtube-backend:latest
         ports:
         - containerPort: 5000
         env:
