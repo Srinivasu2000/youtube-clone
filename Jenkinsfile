@@ -23,67 +23,6 @@ pipeline {
             }
         }
 
-        stage('Create EKS Cluster') {
-            steps {
-                sh '''
-                eksctl create cluster \
-                --name youtube-cluster \
-                --region ap-south-1 \
-                --nodegroup-name workers \
-                --node-type t3.medium \
-                --nodes 2 || true
-                '''
-            }
-        }
-
-        stage('Configure Kubernetes Access') {
-            steps {
-                sh '''
-                aws eks update-kubeconfig --region ap-south-1 --name youtube-cluster
-
-                kubectl get nodes
-                '''
-            }
-        }
-
-        stage('Install SonarQube Scanner') {
-            steps {
-                sh '''
-                sudo apt install default-jdk -y
-                '''
-            }
-        }
-
-        stage('Code Quality Scan') {
-            steps {
-                sh '''
-                echo "Running SonarQube Scan"
-                '''
-            }
-        }
-
-        stage('Install Trivy') {
-            steps {
-                sh '''
-                sudo apt install wget apt-transport-https gnupg lsb-release -y
-
-                wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-
-                echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-
-                sudo apt update
-
-                sudo apt install trivy -y
-                '''
-            }
-        }
-
-        stage('Trivy File Scan') {
-            steps {
-                sh 'trivy fs .'
-            }
-        }
-
         stage('Build Backend Image') {
             steps {
                 sh '''
