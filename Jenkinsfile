@@ -12,32 +12,6 @@ pipeline {
 
     stages {
 
-        stage('Install Dependencies') {
-            steps {
-                sh '''
-               
-
-                sudo yum install -y docker.io unzip curl
-
-                sudo systemctl enable docker
-                sudo systemctl start docker
-
-                curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-                unzip -o awscliv2.zip
-                sudo ./aws/install || true
-
-                curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-
-                chmod +x kubectl
-                sudo mv kubectl /usr/local/bin/
-
-                curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-
-                sudo mv /tmp/eksctl /usr/local/bin
-                '''
-            }
-        }
-
         stage('Verify Tools') {
             steps {
                 sh '''
