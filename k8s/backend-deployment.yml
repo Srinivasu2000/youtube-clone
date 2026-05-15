@@ -1,28 +1,67 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: backend-deployment
+
 spec:
   replicas: 2
+
   selector:
     matchLabels:
       app: backend
+
   template:
     metadata:
       labels:
         app: backend
+
     spec:
       containers:
       - name: backend
+
         image: srinivasu56/youtube-backend:latest
+
         ports:
         - containerPort: 5000
+
         env:
+
+        - name: PORT
+          value: "5000"
+
         - name: DB_HOST
-          value: "mydb.xxxxx.ap-south-1.rds.amazonaws.com"
+          value: "YOUR_RDS_ENDPOINT"
+
         - name: DB_USER
           value: "admin"
-        - name: DB_PASSWORD
+
+        - name: DB_PASS
           value: "Admin@123"
+
         - name: DB_NAME
-          value: "youtube"
+          value: "srinivasdb"
+
+        - name: JWT_SECRET
+          value: "godavari_super_secret_jwt_key"
+
+        - name: SMTP_EMAIL
+          value: "YOUR_GMAIL@gmail.com"
+
+        - name: SMTP_PASS
+          value: "YOUR_GMAIL_APP_PASSWORD"
+
+        - name: AWS_ACCESS_KEY_ID
+          value: "YOUR_AWS_ACCESS_KEY"
+
+        - name: AWS_SECRET_ACCESS_KEY
+          value: "YOUR_AWS_SECRET_KEY"
+
+        - name: AWS_REGION
+          value: "ap-south-1"
+
+        - name: AWS_BUCKET_NAME
+          value: "automation-godavari-youtube"
+
+        - name: FRONTEND_URL
+          value: "http://a655927042cfd4b0a845fbe28806f2fc-880033290.ap-south-1.elb.amazonaws.com"
