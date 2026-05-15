@@ -15,9 +15,9 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                sudo apt update -y
+               
 
-                sudo apt install -y docker.io unzip curl
+                sudo yum install -y docker.io unzip curl
 
                 sudo systemctl enable docker
                 sudo systemctl start docker
