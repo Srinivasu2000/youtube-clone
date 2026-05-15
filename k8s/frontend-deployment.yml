@@ -20,7 +20,7 @@ spec:
       containers:
       - name: frontend
 
-        image: YOUR_DOCKERHUB_USERNAME/youtube-frontend:latest
+        image: Srinivasu2000/youtube-frontend:latest
 
         ports:
         - containerPort: 80
