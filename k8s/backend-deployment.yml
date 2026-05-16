@@ -22,6 +22,8 @@ spec:
 
         image: srinivasu56/youtube-backend:latest
 
+        imagePullPolicy: Always
+
         ports:
         - containerPort: 5000
 
@@ -31,7 +33,7 @@ spec:
           value: "5000"
 
         - name: DB_HOST
-          value: "YOUR_RDS_ENDPOINT"
+          value: "database-1.c3si2kkamld3.ap-south-1.rds.amazonaws.com"
 
         - name: DB_USER
           value: "admin"
@@ -46,10 +48,10 @@ spec:
           value: "godavari_super_secret_jwt_key"
 
         - name: SMTP_EMAIL
-          value: "YOUR_GMAIL@gmail.com"
+          value: "srinuvasugodavari@gmail.com"
 
         - name: SMTP_PASS
-          value: "YOUR_GMAIL_APP_PASSWORD"
+          value: "ymkhifsyrhdiyhyn"
 
         - name: AWS_ACCESS_KEY_ID
           value: "YOUR_AWS_ACCESS_KEY"
